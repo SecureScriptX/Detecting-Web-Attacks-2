@@ -92,3 +92,11 @@ The following payloads can be used for detecting Directory Traversal attacks. To
 - `c:/inetpub/wwwroot/index.asp`
 - `c:/inetpub/wwwroot/web.config`
 - `c:/sysprep.inf`
+
+# Practical Questions:
+
+1. **Exploitation Start Date:** What date did the exploitation phase of the Directory Traversal start? (search for % in logs)
+
+2. **Attacker's IP Address:** What is the IP address of the attacker who performed the Directory Traversal attack? 
+
+3. **Attacked Parameter:** What was the parameter that was targeted during the Directory Traversal attack? (Ex. UID)
