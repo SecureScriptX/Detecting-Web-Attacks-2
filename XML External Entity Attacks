@@ -1,0 +1,65 @@
+# Detecting XML External Entity Attacks
+
+## What is XML External Entity?
+
+XML (Extensible Markup Language) is a markup language used for structuring and storing data in a format that is both human-readable and machine-readable. While once widely used, its popularity has declined with the rise of formats like JSON. XML allows for flexibility and extensibility through custom tags and schemas.
+
+XML External Entity (XXE) vulnerability is a security issue affecting applications parsing XML input. In an XXE attack, malicious XML is injected into an application using an XML parser without proper validation. This can lead to the processing of external entities controlled by the attacker, potentially causing data leaks, server-side request forgery (SSRF), denial of service (DoS), and other serious security issues.
+
+Developers should be aware of XXE vulnerabilities and take preventive measures, including disabling external entities, validating and sanitizing XML input, and using secure XML parsers designed to thwart XXE attacks.
+
+## XML External Entity Possible Vectors
+
+To identify XXE vulnerabilities in a web application, examine XML processing code for input points accepting XML, such as form fields, user-uploaded XML files, APIs with XML requests, or XML files used for configuration. Testing for XXE vulnerabilities involves providing input with external entity references and observing the application's response. Automated vulnerability scanners and penetration testing tools can also be employed for detection.
+
+## How XML External Entity Works?
+
+XXE attacks exploit vulnerabilities in the XML parser of server-side applications. The attack vector and defenses vary based on the programming language. For instance, PHP's DOMDocument parser can be vulnerable to XXE if XML input lacks proper validation and entity loading is not disabled. Developers can defend against this in PHP by using the libxml_disable_entity_loader() function to disable external entity loading.
+
+# Impact of XML External Entity
+
+The impact of an XXE vulnerability can vary, but in general, it poses serious risks leading to harmful outcomes, including:
+
+- **Information Disclosure:** An attacker can exploit XXE to access sensitive server data, potentially modifying or transferring critical information like configuration files and user credentials.
+
+- **Server-side Request Forgery (SSRF):** XXE vulnerability enables attackers to make requests on behalf of the server, allowing internal network scanning, exploitation of other vulnerabilities, and further attacks.
+
+- **Denial of Service (DoS):** XXE can be leveraged for DoS attacks by causing the server to consume excessive resources, such as memory or CPU time.
+
+- **Remote Code Execution (RCE):** In some cases, XXE can lead to arbitrary code execution on the server, granting full control to the attacker.
+
+It's crucial to identify and remediate XXE vulnerabilities in web applications to prevent these outcomes. Best practices include validating and sanitizing XML input, disabling external entity processing, and using secure XML parsers and frameworks.
+
+# Prevention Methods for XML External Entity
+
+To prevent XXE attacks, follow these best practices:
+
+- **Disable External Entities:** Effectively prevent XXE by disabling external entity processing in the XML parser configuration.
+
+- **Input Validation and Sanitization:** Always validate and sanitize XML input to thwart malicious input, including nested XML entities and injections.
+
+- **Use Secure Parsers:** Employ the latest version of a secure XML parser designed to prevent XXE attacks.
+
+- **Whitelist Filtering:** Implement a whitelist of allowed entities and Document Type Definitions (DTDs) to block unauthorized input.
+
+- **Implement Access Controls:** Enforce proper access controls to restrict access to sensitive data and resources, minimizing damage if an XXE vulnerability is exploited.
+
+- **Use Secure Coding Practices:** Apply secure coding practices, including input validation, data sanitization, and error handling, to mitigate the risk of XXE attacks.
+
+By incorporating these practices, the risk of XXE attacks in your web application can be significantly reduced. Stay updated with the latest security best practices and perform regular security assessments to identify and address vulnerabilities.
+- The most important things to detect XXE attacks on the logs, you should check specific keyword like;
+
+    DOCTYPE
+    ELEMENT
+    ENTITY
+
+# Questions to Consider
+
+1. **Affected Parameter:**
+   - What parameter was affected by the XXE vulnerability?
+
+2. **Attempted File Read:**
+   - Which file did the attacker attempt to read using XXE?
+
+3. **Attacker's IP Address:**
+   - What was the IP address of the attacker?
