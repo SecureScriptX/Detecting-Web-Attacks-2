@@ -57,9 +57,22 @@ By incorporating these practices, the risk of XXE attacks in your web applicatio
 
 1. **Affected Parameter:**
    - What parameter was affected by the XXE vulnerability?
+    # Sample Nginx log entry
+127.0.0.1 - - [28/Jan/2024:15:45:32 +0000] "GET /example-page?param1=value1&param2=value2 HTTP/1.1" 200 1024 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.4567.89 Safari/537.36"
+
+-GET is the HTTP method.
+-/example-page is the requested path.
+-param1=value1&param2=value2 are the query parameters.
+- 200 code (success)
+- 1024 is the size of the response in bytes.
+
+*Hint: Search (?)
+
+-The last part is the user-agent string, indicating the client's browser.
 
 2. **Attempted File Read:**
    - Which file did the attacker attempt to read using XXE?
+    -Hint: Decode if neccesary, Attackers can read some files under /etc using XXE.
 
 3. **Attacker's IP Address:**
    - What was the IP address of the attacker?
