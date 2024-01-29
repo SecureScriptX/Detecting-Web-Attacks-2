@@ -131,3 +131,6 @@ Following these steps strengthens security and reduces the risk of successful br
 3. **Brute Forcing Completion Date:**
    - On what date and time did the Brute Forcing successfully complete the login form?
      - Format: dd/MMM/yyyy HH:mm:ss
+
+4. **What date did the Brute Forcing successfully complete to login form?:** 
+  - Hint: after a successful "/login"
