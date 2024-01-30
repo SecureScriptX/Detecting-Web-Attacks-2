@@ -1,0 +1,53 @@
+| SEVERITY | DATE                | RULE NAME                            | EVENTID | TYPE    | ACTION  |
+|----------|---------------------|--------------------------------------|---------|---------|---------|
+| Medium   | Mar 13, 2021, 08:20 PM | SOC138 - Detected Suspicious Xls File | 77      | Malware |         |
+
+**Event Details:**
+- **EventID:** 77
+- **Event Time:** Mar 13, 2021, 08:20 PM
+- **Rule:** SOC138 - Detected Suspicious Xls File
+- **Level:** Security Analyst
+- **Source Address:** 172.16.17.56
+- **Source Hostname:** Sofia 
+- **File Name:** ORDER SHEET & SPEC.xlsm
+- **File Hash:** 7ccf88c0bbe3b29bf19d877c4596a8d4
+- **File Size:** 2.66 Mb
+- **Device Action:** Allowed
+
+| Host Information        |                    |
+|-------------------------|--------------------|
+| **Hostname:**           | Sofia              |
+| **Domain:**             | LetsDefend         |
+| **IP Address:**         | 172.16.17.56       |
+| **Bit Level:**          | 64                 |
+| **OS:**                 | Windows 10         |
+| **Primary User:**       | Sofia2020          |
+| **Client/Server:**      | Client             |
+| **Last Login:**         | Oct 25, 2020, 11:44 PM |
+
+**ALERT:**
+Upon a thorough examination of the alert trigger, it’s shown that a process susceptible to exploitation was executed on the source address `172.16.17.56`. This prompts a deeper investigation to distinguish the correlation between the alert and the threat indicator, specifically focusing on "unknown or unexpected outgoing network traffic."
+
+To validate the truth of this alert, our next step involves scrutinizing the available logs meticulously. The aim is to delve into the details of the network activity, identify any anomalies, and assess whether the detected process led to a successful attack. This comprehensive analysis will contribute to a clearer understanding of the potential security threat and aid in devising an effective response strategy.
+
+**Detection:**
+
+Analyzing the Log Management data for the IP address "172.16.17.56," identified as the source of the alert, reveals a GET request to the host "o.ss2.us" with the IP address 108.138.2.173 and port 80.
+
+Legitimate programs commonly utilize GET requests to pull data from servers, but the specifics of this case involve a directed request to a particular host, complete with a URL path. The response code (`200`) signifies the “success” of the request, indicating that the server provided the requested data. The absence of proxy detection suggests that the request originated directly from the host machine. This is confirmed to be true.
+
+## Containment
+
+Legitimate programs utilize `cscript.exe` to execute VBScript files for automation, system administration, or application scripting.
+
+However, observed events suggest potential malicious usage. The script performs various actions like reading security settings, using base64 encoding, manipulating XML DOM elements, file operations, binary data handling, and establishing unusual connections from system programs. These actions raise concerns about potential malicious activities, including data exfiltration, remote command execution, or exploiting system vulnerabilities.
+
+The compromised system is confirmed to be isolated from the network, and the `.zip` file containing the malware should be removed from the system.
+
+## Lesson Learned
+
+- Avoid the use of vulnerable products on servers and clients to minimize the risk of security breaches.
+
+- Regularly monitor and execute application updates to ensure the latest security patches and enhancements are applied, enhancing the overall resilience of your systems.
+
+- Conduct periodic endpoint tests as part of a proactive approach to bolstering information security awareness among employees. Regular testing helps identify potential vulnerabilities and reinforces a culture of vigilance in safeguarding sensitive information.
